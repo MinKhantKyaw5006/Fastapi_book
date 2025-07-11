@@ -1,0 +1,7 @@
+python -m venv env
+env\Scripts\activate
+fastapi dev
+fastapi dev --app main:app
+fastapi dev main.py
+
+
