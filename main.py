@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+from typing import Optional
 app = FastAPI()
 
 
@@ -13,6 +13,6 @@ async def read_root():
 # mix of variable nad query = greet/lucas?age=21
 
 
-@app.get('/greet/{name}')
-async def greet_name(name: str, age: int) -> dict:
-    return {"message": f"Hello World {name}", "age": age}
+@app.get('/greet')
+async def greet_name(name: Optional[str] = "User", age: int = 0) -> dict:
+    return {"message": f"Hello {name}", "age": age}
