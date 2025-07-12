@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from typing import Optional
+from pydantic import BaseModel
 app = FastAPI()
 
 
@@ -11,8 +12,24 @@ async def read_root():
 
 # passing with query paramter /greet/?name=lucas
 # mix of variable nad query = greet/lucas?age=21
+# http://127.0.0.1:8000/greet?name=jona&age=21
 
 
 @app.get('/greet')
 async def greet_name(name: Optional[str] = "User", age: int = 0) -> dict:
     return {"message": f"Hello {name}", "age": age}
+
+# serialtion
+
+
+class BookCreateModel(BaseModel):
+    title: str
+    author: str
+
+
+@app.post('/create_book')
+async def create_boook(book_data: BookCreateModel):
+    return {
+        "title": book_data.title,
+        "author": book_data.author
+    }
