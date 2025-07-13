@@ -1,6 +1,8 @@
 import ssl
+from sqlmodel import create_engine, text, SQLModel
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine
 from sqlalchemy import text
+from src.books.models import Book
 from src.config import Config
 
 # Create SSL context for secure connection
@@ -17,5 +19,4 @@ async def initdb():
     """Create a connection to our db and test a simple query"""
     async with engine.begin() as conn:
         statement = text("select 'Hello World'")
-        result = await conn.execute(statement)
-        print(result.scalar())  # print the actual string result
+        await conn.run_sync(SQLModel.metadata.create_all)
