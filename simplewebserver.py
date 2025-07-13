@@ -49,3 +49,7 @@
 #     request_headers["User_Agent"] = user_agent
 #     request_headers["Host"] = host
 #     return request_headers
+
+from src.config import Config
+
+print(Config.DATABASE_URL)

@@ -5,3 +5,15 @@ fastapi dev --app main:app
 fastapi dev main.py
 
 restfox http client window
+
+
+| HTTP Method | Path (relative)      | Full URL Example                       | Description              |
+| ----------- | -------------------- | -------------------------------------- | ------------------------ |
+| GET         | `/api/v1/books`      | `http://127.0.0.1:8000/api/v1/books`   | Get **all books**        |
+| POST        | `/api/v1/books`      | `http://127.0.0.1:8000/api/v1/books`   | Create a **new book**    |
+| GET         | `/api/v1/books/{id}` | `http://127.0.0.1:8000/api/v1/books/3` | Get a **book by its ID** |
+| PATCH       | `/api/v1/books/{id}` | `http://127.0.0.1:8000/api/v1/books/3` | Update **a book by ID**  |
+| DELETE      | `/api/v1/books/{id}` | `http://127.0.0.1:8000/api/v1/books/3` | Delete **a book by ID**  |
+
+
+pip install asyncpg
