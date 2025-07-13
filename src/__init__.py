@@ -1,13 +1,14 @@
 from fastapi import FastAPI
 from src.books.routes import book_router
 from contextlib import asynccontextmanager
-
+from src.db.main import initdb
 version = 'v1'
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("🚀 App is starting")
+    await initdb()
     yield
     print("🛑 App is shutting down")
 
