@@ -3,6 +3,7 @@ from src.books.models import Book
 from src.books.schemas import BookCreateModel, BookUpdateModel
 from sqlmodel import select, desc
 from datetime import datetime
+import uuid
 
 
 class BookService:
@@ -20,7 +21,7 @@ class BookService:
         result = await session.exec(statement)
         return result.all()
 
-    async def get_book(self, book_uid: str, session: AsyncSession):
+    async def get_book(self, book_uid: uuid.UUID, session: AsyncSession):
         """Get a book by its UUID.
         Args:
             book_uid (str): the UUID of the book
@@ -44,6 +45,7 @@ class BookService:
         new_book = Book(
             **book_data_dict
         )
+
         new_book.published_date = datetime.strptime(
             book_data_dict['published_date'], "%Y-%m-%d")
         session.add(new_book)
