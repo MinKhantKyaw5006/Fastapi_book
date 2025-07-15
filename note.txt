@@ -19,3 +19,4 @@ restfox http client window
 pip install asyncpg
 
 alembic init -t async migrations
+alembic revision --autogenerate -m "init"
